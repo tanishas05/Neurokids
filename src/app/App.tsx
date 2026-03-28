@@ -7,8 +7,8 @@ import { Explore } from "./pages/Explore";
 import { Insights } from "./pages/Insights";
 import { LearningEngine } from "./pages/LearningEngine";
 import { NotFound } from "./pages/NotFound";
-
 import ProtectedRoute from "./components/ProtectedRoute";
+import ProtectedLayout from "./components/ProtectedLayout";
 
 function App() {
   return (
@@ -22,7 +22,9 @@ function App() {
           path="/parent-dashboard"
           element={
             <ProtectedRoute>
-              <ParentDashboard />
+              <ProtectedLayout>
+                <ParentDashboard />
+              </ProtectedLayout>
             </ProtectedRoute>
           }
         />
@@ -30,7 +32,9 @@ function App() {
           path="/social-coach"
           element={
             <ProtectedRoute>
-              <SocialCoach />
+              <ProtectedLayout>
+                <SocialCoach />
+              </ProtectedLayout>
             </ProtectedRoute>
           }
         />
@@ -38,7 +42,9 @@ function App() {
           path="/dyslexia-games"
           element={
             <ProtectedRoute>
-              <DyslexiaGames />
+              <ProtectedLayout>
+                <DyslexiaGames />
+              </ProtectedLayout>
             </ProtectedRoute>
           }
         />
@@ -46,7 +52,9 @@ function App() {
           path="/explore"
           element={
             <ProtectedRoute>
-              <Explore />
+              <ProtectedLayout>
+                <Explore />
+              </ProtectedLayout>
             </ProtectedRoute>
           }
         />
@@ -54,7 +62,9 @@ function App() {
           path="/insights"
           element={
             <ProtectedRoute>
-              <Insights />
+              <ProtectedLayout>
+                <Insights />
+              </ProtectedLayout>
             </ProtectedRoute>
           }
         />
@@ -62,7 +72,9 @@ function App() {
           path="/learning-engine"
           element={
             <ProtectedRoute>
-              <LearningEngine />
+              <ProtectedLayout>
+                <LearningEngine />
+              </ProtectedLayout>
             </ProtectedRoute>
           }
         />

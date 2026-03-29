@@ -39,6 +39,25 @@ export function ParentDashboard() {
     }
   }, []);
 
+  useEffect(() => {
+    const handler = (e: Event) => {
+      const { gameId, score, total, completedAt } =
+      (e as CustomEvent).detail;
+      console.log("Game completed:", {
+        gameId,
+        score,
+        total,
+        completedAt,
+      });
+  };
+
+  window.addEventListener("neurokids:gameComplete", handler);
+
+  return () => {
+    window.removeEventListener("neurokids:gameComplete", handler);
+  };
+}, []);
+
   const [activityLogs] = useState<ActivityLog[]>([
     {
       id: "1",

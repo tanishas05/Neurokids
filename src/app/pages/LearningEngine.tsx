@@ -2,9 +2,9 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { ArrowLeft, BookOpen, ChevronRight, ChevronLeft } from "lucide-react";
 import { useNavigate } from "react-router";
-import { InterestSelector } from "@/components/learning/InterestSelector";
-import { LessonCard } from "@/components/learning/LessonCard";
-import contentData from "@/data/learningContent.json";
+import { InterestSelector } from "../components/learning/InterestSelector";
+import { LessonCard } from "../components/learning/LessonCard";
+import contentData from "../data/learningContent.json";
 
 type Lesson = {
   id: string;
@@ -128,9 +128,10 @@ export default function LearningEnginePage() {
                 ))}
               </div>
 
-              {/* Lesson card */}
+              {/* Lesson card — keyed by lesson id so all internal state resets on lesson change */}
               {currentLesson && (
                 <LessonCard
+                  key={currentLesson.id}
                   lesson={currentLesson}
                   interestColor={interest?.color ?? "#6366f1"}
                   interestBgColor={interest?.bgColor ?? "#eef2ff"}

@@ -1,5 +1,5 @@
 import { motion } from "motion/react";
-import contentData from "@/data/learningContent.json";
+import contentData from "../../data/learningContent.json";
 
 interface InterestSelectorProps {
   selected: string | null;

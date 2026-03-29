@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { Trophy, RotateCcw, ChevronRight } from "lucide-react";
-import gamesData from "@/data/dyslexiaGamesData.json";
+import gamesData from "../../data/dyslexiaGamesData.json";
 
 interface WordMatchGameProps {
   onSessionComplete: (score: number, total: number) => void;

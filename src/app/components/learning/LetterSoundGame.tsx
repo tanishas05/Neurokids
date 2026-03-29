@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { Trophy, RotateCcw } from "lucide-react";
-import gamesData from "@/data/dyslexiaGamesData.json";
+import gamesData from "../../data/dyslexiaGamesData.json";
 
 interface LetterSoundGameProps {
   onSessionComplete: (score: number, total: number) => void;

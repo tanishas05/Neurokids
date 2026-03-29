@@ -32,7 +32,7 @@ export function Explore() {
       description: "Turn your interests into learning opportunities! Math, reading, and activities based on what you love.",
       icon: BookOpen,
       color: "from-blue-500 to-cyan-500",
-      link: "/learning",
+      link: "/learning-engine",
       features: ["6 interest topics", "Personalized content", "Interactive activities"],
       forWho: "All neurodivergent learners"
     },

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { Trophy, RotateCcw, Hand } from "lucide-react";
-import gamesData from "@/data/dyslexiaGamesData.json";
+import gamesData from "../../data/dyslexiaGamesData.json";
 
 interface SyllableGameProps {
   onSessionComplete: (score: number, total: number) => void;

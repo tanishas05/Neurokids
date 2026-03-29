@@ -2,12 +2,12 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { ArrowLeft, Gamepad2 } from "lucide-react";
 import { useNavigate } from "react-router";
-import { WordMatchGame } from "@/components/learning/WordMatchGame";
-import { LetterSoundGame } from "@/components/learning/LetterSoundGame";
-import { SyllableGame } from "@/components/learning/SyllableGame";
-import { GameCard } from "@/components/learning/GameCard";
-import { ScoreBadge } from "@/components/learning/ScoreBadge";
-import { useGameProgress } from "@/hooks/useGameProgress";
+import { WordMatchGame } from "../components/learning/WordMatchGame";
+import { LetterSoundGame } from "../components/learning/LetterSoundGame";
+import { SyllableGame } from "../components/learning/SyllableGame";
+import { GameCard } from "../components/learning/GameCard";
+import { ScoreBadge } from "../components/learning/ScoreBadge";
+import { useGameProgress } from "../hooks/useGameProgress";
 
 type GameId = "word-match" | "letter-sound" | "syllable";
 

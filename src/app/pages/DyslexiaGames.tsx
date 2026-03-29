@@ -1,230 +1,219 @@
-//tiya will handle
 import { useState } from "react";
-import { Card } from "../components/ui/card";
-import { Button } from "../components/ui/button";
-import { Badge } from "../components/ui/badge";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "../components/ui/tabs";
-import { Gamepad2, Shuffle, Volume2, Trophy, Star } from "lucide-react";
-import gamesData from "../data/dyslexiaGames.json";
-import LogoutButton from "../components/LogoutButton";
+import { motion, AnimatePresence } from "motion/react";
+import { ArrowLeft, Gamepad2 } from "lucide-react";
+import { useNavigate } from "react-router";
+import { WordMatchGame } from "@/components/learning/WordMatchGame";
+import { LetterSoundGame } from "@/components/learning/LetterSoundGame";
+import { SyllableGame } from "@/components/learning/SyllableGame";
+import { GameCard } from "@/components/learning/GameCard";
+import { ScoreBadge } from "@/components/learning/ScoreBadge";
+import { useGameProgress } from "@/hooks/useGameProgress";
 
-export default function ParentDashboard() {
-  return (
-    <div className="p-8">
-      <div className="flex justify-between items-center mb-6">
-        <h1 className="text-3xl font-bold">Parent Dashboard</h1>
-        <LogoutButton />
-      </div>
-      <p>Welcome! You are logged in.</p>
-      <DyslexiaGames />
-    </div>
-  );
-}
+type GameId = "word-match" | "letter-sound" | "syllable";
 
-export function DyslexiaGames() {
-  const [currentWordIndex, setCurrentWordIndex] = useState(0);
-  const [userAnswer, setUserAnswer] = useState("");
-  const [wordGameFeedback, setWordGameFeedback] = useState<{ correct: boolean; message: string } | null>(null);
-  const [score, setScore] = useState(0);
-  const [selectedPhonetic, setSelectedPhonetic] = useState(0);
-  const [readingIndex, setReadingIndex] = useState(0);
-  const [currentWordInReading, setCurrentWordInReading] = useState(0);
+const GAMES: {
+  id: GameId;
+  title: string;
+  description: string;
+  emoji: string;
+  color: string;
+  bgColor: string;
+}[] = [
+  {
+    id: "word-match",
+    title: "Word Match",
+    description: "Match words to pictures",
+    emoji: "🃏",
+    color: "#6366f1",
+    bgColor: "#eef2ff",
+  },
+  {
+    id: "letter-sound",
+    title: "Letter Sounds",
+    description: "Which word starts with this letter?",
+    emoji: "🔤",
+    color: "#ec4899",
+    bgColor: "#fdf2f8",
+  },
+  {
+    id: "syllable",
+    title: "Syllable Tap",
+    description: "Tap out the syllables",
+    emoji: "👋",
+    color: "#f59e0b",
+    bgColor: "#fffbeb",
+  },
+];
 
-  const currentWordGame = gamesData.wordGames[currentWordIndex];
-  const currentPhonetic = gamesData.phoneticPairs[selectedPhonetic];
-  const currentReading = gamesData.readingPractice[readingIndex];
+export default function DyslexiaGamesPage() {
+  const navigate = useNavigate();
+  const [activeGame, setActiveGame] = useState<GameId>("word-match");
+  const { sessions, recordSession } = useGameProgress();
 
-  const handleWordGameSubmit = () => {
-    const isCorrect = userAnswer.toLowerCase().trim() === currentWordGame.word.toLowerCase();
-    setWordGameFeedback({
-      correct: isCorrect,
-      message: isCorrect
-        ? "🎉 Perfect! You unscrambled it!"
-        : `Not quite. The word is "${currentWordGame.word}". Try the next one!`,
-    });
-    if (isCorrect) setScore(score + 1);
-  };
+  const activeGameMeta = GAMES.find((g) => g.id === activeGame)!;
 
-  const handleNextWord = () => {
-    setCurrentWordIndex((prev) => (prev + 1 < gamesData.wordGames.length ? prev + 1 : 0));
-    setUserAnswer("");
-    setWordGameFeedback(null);
-  };
-
-  const handleReadWord = (word: string) => {
-    if ("speechSynthesis" in window) {
-      const utterance = new SpeechSynthesisUtterance(word);
-      utterance.rate = 0.8;
-      window.speechSynthesis.speak(utterance);
-    }
-  };
-
-  const handleNextWordInReading = () => {
-    if (currentWordInReading < currentReading.text.length - 1) setCurrentWordInReading(currentWordInReading + 1);
-  };
-
-  const handlePrevWordInReading = () => {
-    if (currentWordInReading > 0) setCurrentWordInReading(currentWordInReading - 1);
-  };
+  const lastSession = [...sessions]
+    .reverse()
+    .find((s) => s.gameId === activeGame);
 
   return (
-    <div className="max-w-7xl mx-auto px-4 py-8">
-      <div className="mb-8 flex items-center gap-3">
-        <div className="w-12 h-12 bg-gradient-to-br from-green-500 to-emerald-500 rounded-xl flex items-center justify-center">
-          <Gamepad2 className="w-6 h-6 text-white" />
-        </div>
-        <div>
-          <h1 className="text-3xl font-bold text-gray-800">Dyslexia Support Games</h1>
-          <p className="text-gray-600">Fun exercises to improve reading skills</p>
+    <div className="min-h-screen bg-gradient-to-b from-slate-50 to-white">
+      {/* Top bar */}
+      <div className="sticky top-0 z-10 bg-white/90 backdrop-blur-sm border-b border-gray-100 px-4 py-3 flex items-center gap-3">
+        <button
+          onClick={() => navigate(-1)}
+          className="flex items-center justify-center w-9 h-9 rounded-full hover:bg-gray-100 transition-colors text-gray-500"
+        >
+          <ArrowLeft size={18} />
+        </button>
+        <div className="flex items-center gap-2">
+          <Gamepad2 size={18} className="text-pink-500" />
+          <h1 className="text-base font-bold text-gray-800">Dyslexia Games</h1>
         </div>
       </div>
-      <div className="flex items-center gap-2 mb-6">
-        <Badge className="bg-green-100 text-green-700 border-green-200">Module by Person 2</Badge>
-        <Badge className="bg-yellow-100 text-yellow-700 border-yellow-200">
-          <Trophy className="w-3 h-3 mr-1" />
-          Score: {score}
-        </Badge>
-      </div>
 
-      <Tabs defaultValue="word-scramble" className="w-full">
-        <TabsList className="grid w-full grid-cols-3 mb-6">
-          <TabsTrigger value="word-scramble">Word Scramble</TabsTrigger>
-          <TabsTrigger value="phonetic">Phonetic Match</TabsTrigger>
-          <TabsTrigger value="reading">Read Aloud</TabsTrigger>
-        </TabsList>
+      <div className="max-w-lg mx-auto px-4 py-5">
+        {/* Intro */}
+        <div className="mb-5">
+          <h2 className="text-lg font-bold text-gray-800">
+            Reading Games 📚
+          </h2>
+          <p className="text-sm text-gray-500 mt-0.5">
+            Fun ways to practise reading, letters, and sounds!
+          </p>
+        </div>
 
-        {/* Word Scramble */}
-        <TabsContent value="word-scramble">
-          <Card className="p-6 mb-6">
-            <div className="flex justify-between mb-4">
-              <h3 className="text-xl font-bold flex items-center gap-2">
-                <Shuffle className="w-5 h-5 text-green-600" /> Unscramble the Word
-              </h3>
-              <Badge className="bg-green-100 text-green-700">
-                Word {currentWordIndex + 1} of {gamesData.wordGames.length}
-              </Badge>
-            </div>
+        {/* Game tabs */}
+        <div className="flex gap-2 mb-5 overflow-x-auto pb-1 no-scrollbar">
+          {GAMES.map((game) => {
+            const isActive = activeGame === game.id;
+            return (
+              <button
+                key={game.id}
+                onClick={() => setActiveGame(game.id)}
+                className="flex-shrink-0 flex items-center gap-2 px-4 py-2 rounded-full border-2 text-sm font-semibold transition-all duration-200"
+                style={{
+                  borderColor: isActive ? game.color : "#e5e7eb",
+                  backgroundColor: isActive ? game.bgColor : "#ffffff",
+                  color: isActive ? game.color : "#6b7280",
+                }}
+              >
+                <span>{game.emoji}</span>
+                {game.title}
+              </button>
+            );
+          })}
+        </div>
 
-            <Card className="p-8 bg-green-50 border-green-200 mb-6">
-              <p className="text-center text-5xl font-bold text-green-700 tracking-widest mb-4 font-mono">
-                {currentWordGame.scrambled}
-              </p>
-              <div className="flex justify-center items-center gap-2 bg-white/50 px-4 py-2 rounded-lg">
-                <Star className="w-4 h-4 text-yellow-500" /> Hint: {currentWordGame.hint}
-              </div>
-            </Card>
+        {/* Last score badge */}
+        {lastSession && (
+          <div className="mb-4">
+            <ScoreBadge
+              score={lastSession.score}
+              total={lastSession.total}
+              gameLabel={`Last ${activeGameMeta.title} session`}
+            />
+          </div>
+        )}
 
-            <div className="flex gap-2 mb-4">
-              <input
-                type="text"
-                value={userAnswer}
-                onChange={(e) => setUserAnswer(e.target.value)}
-                onKeyPress={(e) => e.key === "Enter" && !wordGameFeedback && handleWordGameSubmit()}
-                placeholder="Type the correct word..."
-                className="flex-1 px-4 py-3 border rounded-lg focus:ring-2 focus:ring-green-500 text-lg"
-                disabled={!!wordGameFeedback}
-              />
-              {!wordGameFeedback ? (
-                <Button onClick={handleWordGameSubmit} disabled={!userAnswer.trim()}>Check</Button>
-              ) : (
-                <Button onClick={handleNextWord}>Next</Button>
+        {/* Active game */}
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={activeGame}
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: -20 }}
+            transition={{ duration: 0.2 }}
+          >
+            <GameCard
+              title={activeGameMeta.title}
+              description={activeGameMeta.description}
+              emoji={activeGameMeta.emoji}
+              color={activeGameMeta.color}
+              bgColor={activeGameMeta.bgColor}
+            >
+              {activeGame === "word-match" && (
+                <WordMatchGame
+                  onSessionComplete={(score, total) =>
+                    recordSession("word-match", score, total)
+                  }
+                />
               )}
-            </div>
+              {activeGame === "letter-sound" && (
+                <LetterSoundGame
+                  onSessionComplete={(score, total) =>
+                    recordSession("letter-sound", score, total)
+                  }
+                />
+              )}
+              {activeGame === "syllable" && (
+                <SyllableGame
+                  onSessionComplete={(score, total) =>
+                    recordSession("syllable", score, total)
+                  }
+                />
+              )}
+            </GameCard>
+          </motion.div>
+        </AnimatePresence>
 
-            {wordGameFeedback && (
-              <Card className={`p-4 ${wordGameFeedback.correct ? "bg-green-50 border-green-200" : "bg-orange-50 border-orange-200"}`}>
-                <p className={`text-center font-medium ${wordGameFeedback.correct ? "text-green-800" : "text-orange-800"}`}>
-                  {wordGameFeedback.message}
-                </p>
-              </Card>
-            )}
-          </Card>
-        </TabsContent>
-
-        {/* Phonetic */}
-        <TabsContent value="phonetic">
-          <Card className="p-6 mb-6">
-            <h3 className="text-xl font-bold mb-6 flex items-center gap-2">
-              <Volume2 className="w-5 h-5 text-green-600" /> Phonetic Matching & Rhymes
+        {/* All sessions mini log */}
+        {sessions.length > 0 && (
+          <div className="mt-6">
+            <h3 className="text-sm font-bold text-gray-500 uppercase tracking-wide mb-3">
+              Today's sessions
             </h3>
-            <div className="grid md:grid-cols-2 gap-6">
-              <div>
-                {gamesData.phoneticPairs.map((pair, i) => (
-                  <Card
-                    key={pair.id}
-                    className={`p-4 cursor-pointer mb-2 ${selectedPhonetic === i ? "bg-green-50 border-green-300 shadow-md" : "hover:bg-gray-50"}`}
-                    onClick={() => setSelectedPhonetic(i)}
-                  >
-                    <div className="flex justify-between">
-                      <div>
-                        <p className="font-bold text-lg">{pair.word}</p>
-                        <p className="text-sm">{pair.sound}</p>
+            <div className="flex flex-col gap-2">
+              {[...sessions]
+                .reverse()
+                .slice(0, 5)
+                .map((s, i) => {
+                  const game = GAMES.find((g) => g.id === s.gameId);
+                  return (
+                    <motion.div
+                      key={i}
+                      initial={{ opacity: 0, x: -10 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: i * 0.05 }}
+                      className="flex items-center gap-3 px-4 py-2 rounded-2xl bg-white border border-gray-100 shadow-xs"
+                    >
+                      <span className="text-xl">{game?.emoji ?? "🎮"}</span>
+                      <div className="flex-1 min-w-0">
+                        <p className="text-sm font-semibold text-gray-700 truncate">
+                          {game?.title}
+                        </p>
+                        <p className="text-xs text-gray-400">
+                          {s.score}/{s.total} ·{" "}
+                          {s.completedAt.toLocaleTimeString([], {
+                            hour: "2-digit",
+                            minute: "2-digit",
+                          })}
+                        </p>
                       </div>
-                      <Button size="sm" variant="outline" onClick={(e) => { e.stopPropagation(); handleReadWord(pair.word); }}>
-                        <Volume2 className="w-4 h-4" />
-                      </Button>
-                    </div>
-                  </Card>
-                ))}
-              </div>
-
-              <div>
-                <h4 className="font-medium mb-3">Rhymes with "{currentPhonetic.word}"</h4>
-                <Card className="p-6 bg-green-50 border-green-200">
-                  <div className="grid grid-cols-2 gap-3">
-                    {currentPhonetic.rhymesWith.map((rhyme, i) => (
-                      <div key={i} className="bg-white p-3 rounded-lg shadow-sm hover:shadow-md cursor-pointer" onClick={() => handleReadWord(rhyme)}>
-                        <p>{rhyme}</p>
+                      <div className="flex gap-0.5">
+                        {[1, 2, 3].map((star) => {
+                          const pct =
+                            s.total > 0 ? (s.score / s.total) * 100 : 0;
+                          const stars =
+                            pct >= 90 ? 3 : pct >= 60 ? 2 : pct >= 30 ? 1 : 0;
+                          return (
+                            <span
+                              key={star}
+                              className="text-xs"
+                              style={{ opacity: star <= stars ? 1 : 0.2 }}
+                            >
+                              ⭐
+                            </span>
+                          );
+                        })}
                       </div>
-                    ))}
-                  </div>
-                </Card>
-              </div>
+                    </motion.div>
+                  );
+                })}
             </div>
-          </Card>
-        </TabsContent>
-
-        {/* Reading */}
-        <TabsContent value="reading">
-          <Card className="p-6 mb-6">
-            <div className="flex justify-between mb-4">
-              <h3 className="text-xl font-bold flex items-center gap-2">
-                <Volume2 className="w-5 h-5 text-green-600" /> Read Aloud
-              </h3>
-              <div className="flex gap-2">
-                {gamesData.readingPractice.map((_, i) => (
-                  <Button key={i} size="sm" variant={readingIndex === i ? "default" : "outline"} onClick={() => { setReadingIndex(i); setCurrentWordInReading(0); }}>
-                    Story {i + 1}
-                  </Button>
-                ))}
-              </div>
-            </div>
-
-            <Badge variant="outline" className="mb-4">{currentReading.level}</Badge>
-            <h4 className="text-lg font-bold mb-4">{currentReading.title}</h4>
-
-            <Card className="p-8 bg-green-50 border-green-200 mb-6">
-              <div className="flex flex-wrap gap-2 text-2xl justify-center">
-                {currentReading.text.map((word, i) => (
-                  <span
-                    key={i}
-                    className={`cursor-pointer px-2 py-1 rounded ${i === currentWordInReading ? "bg-yellow-300 font-bold scale-110 shadow-lg" : i < currentWordInReading ? "text-gray-500" : "text-gray-800 hover:bg-white"}`}
-                    onClick={() => { setCurrentWordInReading(i); handleReadWord(word); }}
-                  >
-                    {word}
-                  </span>
-                ))}
-              </div>
-            </Card>
-
-            <div className="flex gap-2 justify-center mb-6">
-              <Button onClick={handlePrevWordInReading} disabled={currentWordInReading === 0} variant="outline">Previous</Button>
-              <Button onClick={() => handleReadWord(currentReading.text[currentWordInReading])} className="bg-green-600 hover:bg-green-700">Read Current</Button>
-              <Button onClick={handleNextWordInReading} disabled={currentWordInReading === currentReading.text.length - 1} variant="outline">Next</Button>
-            </div>
-          </Card>
-        </TabsContent>
-      </Tabs>
+          </div>
+        )}
+      </div>
     </div>
   );
 }

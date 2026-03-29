@@ -1,266 +1,222 @@
 {
-  "interests": {
-    "cars": {
-      "name": "Cars & Vehicles",
-      "icon": "🚗",
-      "mathProblems": [
-        {
-          "id": 1,
-          "question": "A race car travels 5 laps around a track. Each lap is 8 kilometers. How many total kilometers does the car travel?",
-          "answer": "40",
-          "difficulty": "easy"
-        },
-        {
-          "id": 2,
-          "question": "You have 3 red cars, 5 blue cars, and 2 green cars in your collection. How many cars do you have in total?",
-          "answer": "10",
-          "difficulty": "easy"
-        },
-        {
-          "id": 3,
-          "question": "A car factory makes 12 cars per hour. How many cars are made in 4 hours?",
-          "answer": "48",
-          "difficulty": "medium"
-        }
-      ],
-      "readingExercises": [
-        {
-          "id": 1,
-          "title": "The Fast Race Car",
-          "text": "Lightning was the fastest race car on the track. Every morning, Lightning would practice driving around the curves. The car loved the sound of the engine roaring. One day, Lightning won the big race!",
-          "questions": [
-            "What was the car's name?",
-            "What did Lightning love?",
-            "What happened at the end?"
-          ]
-        },
-        {
-          "id": 2,
-          "title": "Building a Car",
-          "text": "Cars are made in factories with many parts. The engine makes the car go. The wheels help it roll. The steering wheel helps you turn. Seats keep you comfortable. All these parts work together!",
-          "questions": [
-            "Where are cars made?",
-            "What makes the car go?",
-            "What helps you turn?"
-          ]
-        }
-      ],
-      "activities": [
-        {
-          "id": 1,
-          "title": "Design Your Dream Car",
-          "description": "Draw and color your perfect car. What color is it? How many seats? What special features does it have?",
-          "type": "creative"
-        },
-        {
-          "id": 2,
-          "title": "Car Counting Game",
-          "description": "Look out the window for 5 minutes. Count how many red cars, blue cars, and white cars you see. Which color is most common?",
-          "type": "observation"
-        }
-      ]
+  "interests": [
+    {
+      "id": "space",
+      "label": "Space & Planets",
+      "emoji": "🚀",
+      "color": "#6366f1",
+      "bgColor": "#eef2ff"
     },
-    "animals": {
-      "name": "Animals & Nature",
-      "icon": "🦁",
-      "mathProblems": [
-        {
-          "id": 1,
-          "question": "A lion pride has 4 adult lions and 6 cubs. How many lions are in the pride?",
-          "answer": "10",
-          "difficulty": "easy"
-        },
-        {
-          "id": 2,
-          "question": "A bird lays 3 eggs in each nest. If there are 4 nests, how many eggs in total?",
-          "answer": "12",
-          "difficulty": "easy"
-        },
-        {
-          "id": 3,
-          "question": "An elephant drinks 200 liters of water per day. How much water does it drink in a week (7 days)?",
-          "answer": "1400",
-          "difficulty": "medium"
-        }
-      ],
-      "readingExercises": [
-        {
-          "id": 1,
-          "title": "The Brave Little Penguin",
-          "text": "Pip was a small penguin who lived in Antarctica. Unlike other penguins, Pip was afraid of water. One day, Pip's friend fell into the ocean. Pip jumped in to help! Pip learned that being brave means doing something even when you're scared.",
-          "questions": [
-            "What was the penguin afraid of?",
-            "Why did Pip jump in the water?",
-            "What did Pip learn?"
-          ]
-        }
-      ],
-      "activities": [
-        {
-          "id": 1,
-          "title": "Animal Habitat Match",
-          "description": "Match each animal to where it lives: fish→ocean, camel→desert, penguin→Antarctica, monkey→jungle",
-          "type": "matching"
-        }
-      ]
+    {
+      "id": "animals",
+      "label": "Animals",
+      "emoji": "🦁",
+      "color": "#f59e0b",
+      "bgColor": "#fffbeb"
     },
-    "space": {
-      "name": "Space & Planets",
-      "icon": "🚀",
-      "mathProblems": [
-        {
-          "id": 1,
-          "question": "The moon is 384,400 kilometers from Earth. If a rocket travels 100,000 kilometers, how much farther until it reaches the moon?",
-          "answer": "284400",
-          "difficulty": "hard"
-        },
-        {
-          "id": 2,
-          "question": "There are 8 planets in our solar system. If you've visited 3, how many are left to visit?",
-          "answer": "5",
-          "difficulty": "easy"
-        },
-        {
-          "id": 3,
-          "question": "A space station orbits Earth 16 times a day. How many times does it orbit in 3 days?",
-          "answer": "48",
-          "difficulty": "medium"
-        }
-      ],
-      "readingExercises": [
-        {
-          "id": 1,
-          "title": "Journey to Mars",
-          "text": "Mars is the red planet. It's called red because of the iron in its soil. Scientists want to send people to Mars one day. The trip would take about 7 months! Astronauts would need to bring all their food and water.",
-          "questions": [
-            "Why is Mars red?",
-            "How long does the trip take?",
-            "What would astronauts need to bring?"
-          ]
-        }
-      ],
-      "activities": [
-        {
-          "id": 1,
-          "title": "Build a Solar System",
-          "description": "Use balls or fruits of different sizes to represent planets. Arrange them in order from the Sun!",
-          "type": "hands-on"
-        }
-      ]
+    {
+      "id": "dinosaurs",
+      "label": "Dinosaurs",
+      "emoji": "🦕",
+      "color": "#10b981",
+      "bgColor": "#ecfdf5"
     },
-    "dinosaurs": {
-      "name": "Dinosaurs",
-      "icon": "🦕",
-      "mathProblems": [
-        {
-          "id": 1,
-          "question": "A T-Rex is 12 meters long. A Velociraptor is 2 meters long. How much longer is the T-Rex?",
-          "answer": "10",
-          "difficulty": "easy"
-        },
-        {
-          "id": 2,
-          "question": "Dinosaurs lived 65 million years ago. If humans appeared 2 million years ago, how many years between them?",
-          "answer": "63",
-          "difficulty": "hard"
-        }
-      ],
-      "readingExercises": [
-        {
-          "id": 1,
-          "title": "The Gentle Giant",
-          "text": "Brachiosaurus was one of the tallest dinosaurs. It had a long neck to reach high trees. Even though it was huge, it only ate plants. Brachiosaurus was gentle and lived in herds with its family.",
-          "questions": [
-            "Why did Brachiosaurus have a long neck?",
-            "What did it eat?",
-            "Did it live alone?"
-          ]
-        }
-      ],
-      "activities": [
-        {
-          "id": 1,
-          "title": "Dinosaur Timeline",
-          "description": "Draw a timeline showing when different dinosaurs lived. Which came first?",
-          "type": "creative"
-        }
-      ]
+    {
+      "id": "ocean",
+      "label": "Ocean & Sea",
+      "emoji": "🐠",
+      "color": "#3b82f6",
+      "bgColor": "#eff6ff"
     },
-    "sports": {
-      "name": "Sports & Games",
-      "icon": "⚽",
-      "mathProblems": [
-        {
-          "id": 1,
-          "question": "A soccer team scores 3 goals in the first half and 2 in the second. How many goals total?",
-          "answer": "5",
-          "difficulty": "easy"
-        },
-        {
-          "id": 2,
-          "question": "A basketball player makes 8 baskets. Each basket is worth 2 points. How many points?",
-          "answer": "16",
-          "difficulty": "medium"
-        }
-      ],
-      "readingExercises": [
-        {
-          "id": 1,
-          "title": "The Team Player",
-          "text": "Maya loved basketball but always wanted to score alone. Her coach taught her that passing to teammates is important. In the big game, Maya passed the ball and her team won! She learned that teamwork is more important than individual glory.",
-          "questions": [
-            "What sport did Maya play?",
-            "What did the coach teach?",
-            "What did Maya learn?"
-          ]
-        }
-      ],
-      "activities": [
-        {
-          "id": 1,
-          "title": "Create Your Own Game",
-          "description": "Invent a new sport! What are the rules? How do you win? What equipment do you need?",
-          "type": "creative"
-        }
-      ]
+    {
+      "id": "sports",
+      "label": "Sports",
+      "emoji": "⚽",
+      "color": "#ef4444",
+      "bgColor": "#fef2f2"
     },
-    "music": {
-      "name": "Music & Instruments",
-      "icon": "🎵",
-      "mathProblems": [
-        {
-          "id": 1,
-          "question": "A song has 4 verses and each verse is 30 seconds. How long is the whole song?",
-          "answer": "120",
-          "difficulty": "easy"
-        },
-        {
-          "id": 2,
-          "question": "A band has 2 guitarists, 1 drummer, 1 singer, and 1 keyboard player. How many members?",
-          "answer": "5",
-          "difficulty": "easy"
-        }
-      ],
-      "readingExercises": [
-        {
-          "id": 1,
-          "title": "The Magic of Music",
-          "text": "Music is made of different sounds working together. Rhythm is the beat you tap your foot to. Melody is the tune you hum. Harmony is when different notes sound good together. When you combine all three, you create beautiful music!",
-          "questions": [
-            "What is rhythm?",
-            "What is melody?",
-            "What makes beautiful music?"
-          ]
-        }
-      ],
-      "activities": [
-        {
-          "id": 1,
-          "title": "Make Your Own Instrument",
-          "description": "Use household items to create a musical instrument. Rice in a container = shaker. Rubber bands on a box = guitar!",
-          "type": "hands-on"
-        }
-      ]
+    {
+      "id": "music",
+      "label": "Music",
+      "emoji": "🎵",
+      "color": "#8b5cf6",
+      "bgColor": "#f5f3ff"
     }
+  ],
+  "lessons": {
+    "space": [
+      {
+        "id": "space-1",
+        "title": "The Sun",
+        "readingLevel": "easy",
+        "content": "The Sun is a giant star at the center of our solar system. It is so big that one million Earths could fit inside it! The Sun gives us light and warmth every day.",
+        "funFact": "The Sun is about 4.6 billion years old!",
+        "wordCount": 38,
+        "imageEmoji": "☀️"
+      },
+      {
+        "id": "space-2",
+        "title": "Planet Earth",
+        "readingLevel": "easy",
+        "content": "Earth is our home planet. It is the only planet we know of with liquid water on its surface. Earth has one moon that orbits around it.",
+        "funFact": "Earth spins around once every 24 hours!",
+        "wordCount": 33,
+        "imageEmoji": "🌍"
+      },
+      {
+        "id": "space-3",
+        "title": "Stars in the Sky",
+        "readingLevel": "medium",
+        "content": "Stars are huge balls of hot gas that produce light and heat. On a clear night, you can see thousands of stars from Earth. Our Sun is actually a star, just much closer to us than the others.",
+        "funFact": "There are more stars in the universe than grains of sand on all Earth's beaches!",
+        "wordCount": 46,
+        "imageEmoji": "⭐"
+      }
+    ],
+    "animals": [
+      {
+        "id": "animals-1",
+        "title": "Lions",
+        "readingLevel": "easy",
+        "content": "Lions are big cats that live in Africa. They live in groups called prides. Male lions have a big mane of fur around their face. Lions are very fast runners.",
+        "funFact": "A lion's roar can be heard from 8 kilometres away!",
+        "wordCount": 34,
+        "imageEmoji": "🦁"
+      },
+      {
+        "id": "animals-2",
+        "title": "Elephants",
+        "readingLevel": "easy",
+        "content": "Elephants are the largest land animals on Earth. They use their long trunks to pick up food and water. Baby elephants stay close to their mothers for many years.",
+        "funFact": "Elephants never forget! They have amazing memories.",
+        "wordCount": 35,
+        "imageEmoji": "🐘"
+      },
+      {
+        "id": "animals-3",
+        "title": "Penguins",
+        "readingLevel": "medium",
+        "content": "Penguins are birds that cannot fly, but they are excellent swimmers. They live mostly in the cold southern hemisphere, especially Antarctica. Penguins huddle together to stay warm in cold weather.",
+        "funFact": "Emperor penguins can dive up to 500 metres deep!",
+        "wordCount": 38,
+        "imageEmoji": "🐧"
+      }
+    ],
+    "dinosaurs": [
+      {
+        "id": "dino-1",
+        "title": "T-Rex",
+        "readingLevel": "easy",
+        "content": "Tyrannosaurus Rex was one of the biggest meat-eating dinosaurs. It had tiny arms but very strong legs. T-Rex had huge sharp teeth perfect for eating other dinosaurs.",
+        "funFact": "T-Rex teeth were as long as bananas!",
+        "wordCount": 33,
+        "imageEmoji": "🦖"
+      },
+      {
+        "id": "dino-2",
+        "title": "Triceratops",
+        "readingLevel": "easy",
+        "content": "Triceratops had three horns on its face and a big frill around its head. It was a plant-eater and used its horns to protect itself. Triceratops was about the size of an elephant.",
+        "funFact": "Triceratops means 'three-horned face' in Greek!",
+        "wordCount": 38,
+        "imageEmoji": "🦕"
+      },
+      {
+        "id": "dino-3",
+        "title": "Pterodactyl",
+        "readingLevel": "medium",
+        "content": "Pterodactyls were flying reptiles that lived at the same time as dinosaurs. They were not actually dinosaurs themselves! They had large wings made of skin and could soar high in the sky.",
+        "funFact": "Some pterodactyls had wingspans as wide as a small plane!",
+        "wordCount": 40,
+        "imageEmoji": "🦅"
+      }
+    ],
+    "ocean": [
+      {
+        "id": "ocean-1",
+        "title": "Dolphins",
+        "readingLevel": "easy",
+        "content": "Dolphins are very smart sea animals. They live in groups called pods and love to play. Dolphins breathe air just like us and must come to the surface to breathe.",
+        "funFact": "Dolphins sleep with one eye open!",
+        "wordCount": 34,
+        "imageEmoji": "🐬"
+      },
+      {
+        "id": "ocean-2",
+        "title": "Sharks",
+        "readingLevel": "easy",
+        "content": "Sharks are powerful fish that have lived in the ocean for millions of years. They have rows of sharp teeth and a very good sense of smell. Most sharks are not dangerous to people.",
+        "funFact": "A shark can have up to 30,000 teeth in its lifetime!",
+        "wordCount": 38,
+        "imageEmoji": "🦈"
+      },
+      {
+        "id": "ocean-3",
+        "title": "Coral Reefs",
+        "readingLevel": "medium",
+        "content": "Coral reefs are underwater structures made by tiny animals called coral polyps. They are sometimes called the rainforests of the sea because so many animals live there. Coral reefs need warm, clean water to survive.",
+        "funFact": "The Great Barrier Reef in Australia can be seen from space!",
+        "wordCount": 43,
+        "imageEmoji": "🪸"
+      }
+    ],
+    "sports": [
+      {
+        "id": "sports-1",
+        "title": "Football (Soccer)",
+        "readingLevel": "easy",
+        "content": "Football is the most popular sport in the world. Two teams of eleven players try to kick a ball into the other team's goal. Matches are played for 90 minutes in two halves.",
+        "funFact": "The first Football World Cup was held in Uruguay in 1930!",
+        "wordCount": 38,
+        "imageEmoji": "⚽"
+      },
+      {
+        "id": "sports-2",
+        "title": "Swimming",
+        "readingLevel": "easy",
+        "content": "Swimming is a sport where you move through water using your arms and legs. There are four main swimming strokes: freestyle, backstroke, breaststroke, and butterfly. Swimming is also great exercise for your whole body.",
+        "funFact": "Humans can swim as fast as 8.6 km per hour!",
+        "wordCount": 40,
+        "imageEmoji": "🏊"
+      },
+      {
+        "id": "sports-3",
+        "title": "Cricket",
+        "readingLevel": "medium",
+        "content": "Cricket is a team sport played with a bat and ball. Two teams of eleven players take turns batting and fielding. The batting team tries to score runs while the fielding team tries to get the batters out.",
+        "funFact": "A cricket ball can travel at over 150 km per hour!",
+        "wordCount": 43,
+        "imageEmoji": "🏏"
+      }
+    ],
+    "music": [
+      {
+        "id": "music-1",
+        "title": "Drums",
+        "readingLevel": "easy",
+        "content": "Drums are musical instruments you hit to make sounds. They are one of the oldest instruments in the world. Drums help set the beat in a band and make music fun to dance to.",
+        "funFact": "The world's largest drum is taller than a two-storey building!",
+        "wordCount": 37,
+        "imageEmoji": "🥁"
+      },
+      {
+        "id": "music-2",
+        "title": "Piano",
+        "readingLevel": "easy",
+        "content": "The piano has black and white keys that you press to make sounds. When you press a key, a small hammer inside hits a string to create a note. A full piano has 88 keys.",
+        "funFact": "Beethoven composed music even after he went deaf!",
+        "wordCount": 38,
+        "imageEmoji": "🎹"
+      },
+      {
+        "id": "music-3",
+        "title": "How Sound Works",
+        "readingLevel": "medium",
+        "content": "Sound is made when something vibrates, or shakes very fast. These vibrations travel through the air as waves and reach our ears. The faster the vibrations, the higher the pitch of the sound.",
+        "funFact": "Sound travels about 343 metres every second in air!",
+        "wordCount": 41,
+        "imageEmoji": "🔊"
+      }
+    ]
   }
 }

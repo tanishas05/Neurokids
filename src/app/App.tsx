@@ -10,6 +10,8 @@ import { SocialCoach } from "./pages/SocialCoach";
 import { LearningEngine } from "./pages/LearningEngine";
 import { DyslexiaGames } from "./pages/DyslexiaGames";
 import { Landing } from "./pages/Landing";
+import LearningEnginePage from "@/pages/LearningEngine";
+import DyslexiaGamesPage from "@/pages/DyslexiaGames";
 
 export default function App() {
   return (
@@ -67,6 +69,9 @@ export default function App() {
 
         {/* Catch-all: redirect to landing page */}
         <Route path="*" element={<Landing />} />
+        
+        <Route path="/learning-engine" element={<LearningEnginePage />} />
+        <Route path="/dyslexia-games"  element={<DyslexiaGamesPage />} />
       </Routes>
     </Router>
   );

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
+import { useNavigate } from "react-router";
 
 export default function ConnectChild() {
   const [childEmail, setChildEmail] = useState("");
@@ -9,6 +10,7 @@ export default function ConnectChild() {
   const [message, setMessage] = useState("");
   const [connected, setConnected] = useState(false);
   const [isError, setIsError] = useState(false);
+  const navigate = useNavigate();
 
   const generateOTP = () => Math.floor(100000 + Math.random() * 900000).toString();
 
@@ -321,16 +323,15 @@ export default function ConnectChild() {
                   </p>
                 </div>
 
-                <a href="/parent-dashboard">
-                  <motion.button
-                    className="w-full py-3.5 rounded-2xl font-black text-white shadow-lg"
-                    style={{ background: "linear-gradient(135deg, #2563eb, #7c3aed)" }}
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.97 }}
-                  >
-                    Go to Dashboard →
-                  </motion.button>
-                </a>
+                <motion.button
+  onClick={() => navigate("/parent-dashboard")}
+  className="w-full py-3.5 rounded-2xl font-black text-white shadow-lg"
+  style={{ background: "linear-gradient(135deg, #2563eb, #7c3aed)" }}
+  whileHover={{ scale: 1.02 }}
+  whileTap={{ scale: 0.97 }}
+>
+  Go to Dashboard →
+</motion.button>
               </motion.div>
             )}
           </AnimatePresence>
